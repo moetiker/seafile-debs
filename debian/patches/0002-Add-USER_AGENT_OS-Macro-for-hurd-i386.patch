@@ -1,0 +1,23 @@
+From: Moritz Schlarb <schlarbm@uni-mainz.de>
+Date: Wed, 21 Dec 2022 10:32:43 +0100
+Subject: Add USER_AGENT_OS Macro for hurd-i386
+
+---
+ daemon/http-tx-mgr.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/daemon/http-tx-mgr.c b/daemon/http-tx-mgr.c
+index 4bd8d1d..52159e4 100644
+--- a/daemon/http-tx-mgr.c
++++ b/daemon/http-tx-mgr.c
+@@ -72,6 +72,10 @@
+ #define USER_AGENT_OS "BSD"
+ #endif
+ 
++#ifdef __gnu_hurd__
++#define USER_AGENT_OS "GNU/Hurd"
++#endif
++
+ struct _Connection {
+     CURL *curl;
+     gint64 ctime;               /* Used to clean up unused connection. */

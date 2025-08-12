@@ -1,0 +1,19 @@
+# Build artifacts
+*.deb
+build-*/
+
+# Debian build files
+debian/.debhelper/
+debian/*/
+debian/tmp/
+debian/*.debhelper.log
+debian/*.substvars
+debian/files
+debian/debhelper-build-stamp
+debian/autoreconf.before
+debian/autoreconf.after
+
+# Temporary files
+*.tmp
+*~
+.DS_Store

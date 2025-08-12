@@ -1,0 +1,2 @@
+library-not-linked-against-libc [usr/lib/*/libseafile.so.0.0.0]
+libseafile0t64: package-name-doesnt-match-sonames libseafile0

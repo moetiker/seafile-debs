@@ -1,0 +1,45 @@
+From: Moritz Schlarb <schlarbm@uni-mainz.de>
+Date: Wed, 20 Nov 2019 14:19:27 +0100
+Subject: Fix pkg-config file
+
+Wrong paths are given and Requires isn't correctly used.
+---
+ lib/Makefile.am      | 7 -------
+ lib/libseafile.pc.in | 8 ++++----
+ 2 files changed, 4 insertions(+), 11 deletions(-)
+
+diff --git a/lib/Makefile.am b/lib/Makefile.am
+index 5e30b0d..9afaf7b 100644
+--- a/lib/Makefile.am
++++ b/lib/Makefile.am
+@@ -73,10 +73,3 @@ ${seafile_object_gen}: vala.stamp
+ 
+ clean-local:
+ 	rm -f vala.tmp vala.stamp ${valac_gen}
+-
+-install-data-local:
+-if MACOS
+-	sed -i '' -e "s|(DESTDIR)|${DESTDIR}|g" $(pcfiles)
+-else
+-	${SED} -i "s|(DESTDIR)|${DESTDIR}|g" $(pcfiles)
+-endif
+diff --git a/lib/libseafile.pc.in b/lib/libseafile.pc.in
+index a2ff002..e37782e 100644
+--- a/lib/libseafile.pc.in
++++ b/lib/libseafile.pc.in
+@@ -1,4 +1,4 @@
+-prefix=(DESTDIR)@prefix@
++prefix=@prefix@
+ exec_prefix=@exec_prefix@
+ libdir=@libdir@
+ includedir=@includedir@
+@@ -6,6 +6,6 @@ includedir=@includedir@
+ Name: libseafile
+ Description: Client library for accessing seafile service.
+ Version: @VERSION@
+-Libs: -L${libdir} -lseafile @SEARPC_LIBS@
+-Cflags: -I${includedir} @SEARPC_CFLAGS@
+-Requires: gobject-2.0 glib-2.0
++Libs: -L${libdir} -lseafile
++Cflags: -I${includedir}
++Requires: gobject-2.0 glib-2.0 libsearpc
