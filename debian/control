@@ -23,7 +23,8 @@ Build-Depends:
  libwebsockets-dev (>= 4.3.0),
  uuid-dev,
  valac,
-Build-Depends-Indep: python3-all,
+Build-Depends-Indep:
+ python3-all,
 Standards-Version: 4.7.2
 Homepage: https://github.com/haiwen/seafile
 Vcs-Browser: https://salsa.debian.org/debian/seafile

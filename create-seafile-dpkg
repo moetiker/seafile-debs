@@ -164,15 +164,14 @@ build_daemon_packages() {
         }
     fi
     
-    # Copy debian packaging if not present
-    if [ ! -d "$DAEMON_REPO/debian" ]; then
-        if [ -d "$SCRIPT_DIR/debian" ]; then
-            cp -r "$SCRIPT_DIR/debian" "$DAEMON_REPO/"
-            log_info "Copied debian packaging from script directory"
-        else
-            log_error "No debian packaging found. Please ensure debian/ directory exists."
-            exit 1
-        fi
+    # Copy debian packaging (replace any existing one)
+    if [ -d "$SCRIPT_DIR/debian" ]; then
+        rm -rf "$DAEMON_REPO/debian"
+        cp -r "$SCRIPT_DIR/debian" "$DAEMON_REPO/"
+        log_info "Copied debian packaging from script directory"
+    else
+        log_error "No debian packaging found. Please ensure debian/ directory exists."
+        exit 1
     fi
     
     # Update changelog
