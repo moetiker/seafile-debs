@@ -2,7 +2,7 @@
 *.deb
 build-*/
 
-# Debian build files
+# Debian build artifacts (keep only source packaging files)
 debian/.debhelper/
 debian/*/
 debian/tmp/
@@ -12,6 +12,16 @@ debian/files
 debian/debhelper-build-stamp
 debian/autoreconf.before
 debian/autoreconf.after
+debian/not-installed
+debian/*.postinst.debhelper
+debian/*.prerm.debhelper
+debian/*.postrm.debhelper
+debian/*.preinst.debhelper
+
+# Only keep essential debian source files:
+# debian/control, debian/rules, debian/changelog, debian/copyright
+# debian/patches/, debian/source/, debian/*.install, debian/*.symbols
+# debian/watch, debian/upstream/, debian/tests/, debian/*.lintian-overrides
 
 # Temporary files
 *.tmp

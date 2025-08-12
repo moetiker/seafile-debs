@@ -55,11 +55,14 @@ The build system uses containerized builds with Podman/Docker and requires:
 ### Build Process
 
 1. Clones Seafile source from GitHub (specific version tags)
-2. Sets up containerized Ubuntu build environment
-3. Installs build dependencies via apt
-4. Compiles and packages using `dpkg-buildpackage`
-5. Runs installation tests in clean container
-6. Outputs DEB packages to build directory
+2. Copies debian packaging files from this repository to source
+3. Sets up containerized Ubuntu build environment
+4. Installs build dependencies via apt
+5. Compiles and packages using `dpkg-buildpackage`
+6. Runs installation tests in clean container
+7. Outputs DEB packages to build directory
+
+**Note**: Only essential debian packaging source files are stored in this repository. Build artifacts are automatically generated during the build process.
 
 ## Development Commands
 
